@@ -55,6 +55,7 @@ private slots:
     void pushButtonSlot();
     void on_toolButtonScan_clicked();
     void on_toolButtonRules_clicked();
+    void on_tableWidgetMatches_cellDoubleClicked(int nRow, int nColumn);
 
 private:
     Ui::YARAWidgetAdvanced *ui;

@@ -225,3 +225,18 @@ void YARAWidgetAdvanced::on_toolButtonRules_clicked()
     sDirectory = XOptions::convertPathName(sDirectory);
     XOptions::showFolder(sDirectory);
 }
+
+void YARAWidgetAdvanced::on_tableWidgetMatches_cellDoubleClicked(int nRow, int nColumn)
+{
+    Q_UNUSED(nColumn)
+
+    // Activating a match row follows the same location as its ">" button
+    QWidget *pWidget = ui->tableWidgetMatches->cellWidget(nRow, 3);
+
+    if (pWidget) {
+        qint64 nOffset = pWidget->property("OFFSET").toLongLong();
+        qint64 nSize = pWidget->property("SIZE").toLongLong();
+
+        emit followLocation(nOffset, XBinary::LT_OFFSET, nSize, XOptions::WIDGETTYPE_HEX);
+    }
+}
